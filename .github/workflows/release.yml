@@ -12,7 +12,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
       - name: Run build
-        run: go build .
+        run: go build -ldflags="-s -w"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -20,7 +20,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: PoLiGo Build
           draft: false
           prerelease: false
       - name: Upload Release Asset
@@ -30,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./poligo
-          asset_name: poligo
+          asset_path: .
+          asset_name: ./poligo
           asset_content_type: application/x-executable
 
