@@ -61,7 +61,7 @@ func execute(argSegments *[]string, argTimeout *time.Duration) {
 				segmentOutput.Unlock()
 			case <-time.After(*argTimeout):
 				seg := makeSegment()
-				seg.AddHeadline("Segment ", cmd, " timed out")
+				seg.AddHeadline("Segment ", argCmd, " timed out")
 				segmentOutput.Lock()
 				segmentOutput.segments[argCmd] = seg
 				segmentOutput.Unlock()
