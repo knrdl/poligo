@@ -1,8 +1,9 @@
-name: CICD
+name: Releases
 
 on:
   push:
-    branches: [ main ]
+    tags:
+      - 'v*.*.*'
 
 jobs:
   build:
@@ -15,13 +16,13 @@ jobs:
         run: go build -ldflags="-s -w"
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
         if: github.event_name != 'pull_request'
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}-${{ github.sha }}
-          release_name: PoLiGo Build
+          tag_name: ${{ github.ref_name }}
+          release_name: ${{ github.ref_name }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
