@@ -12,7 +12,7 @@ This project is highly inspired by https://github.com/b-ryan/powerline-shell
 sudo apt install fonts-powerline
 ```
 
-Download binary into `/usr/local/bin/poligo`
+Download binary from [releases](https://github.com/knrdl/poligo/releases) and place it into `/usr/local/bin/poligo`
 
 Add the following to `~/.bashrc`:
 
